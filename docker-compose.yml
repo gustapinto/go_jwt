@@ -1,0 +1,11 @@
+version: "3.6"
+
+services:
+  go:
+    image: golang:1.19
+    tty: true
+    working_dir: /go_jwt
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/go_jwt:Z
