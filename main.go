@@ -7,9 +7,12 @@ import (
 
 func main() {
 	router := gin.Default()
-	controller := controller.NewUserController()
+	userController := controller.NewUserController()
+	fooController := &controller.FooController{}
 
-	router.POST("/api/user", controller.Create)
-	router.POST("/api/auth", controller.Auth)
+	router.POST("/api/user", userController.Create)
+	router.POST("/api/auth", userController.Auth)
+	router.GET("/api/foo", fooController.Foo)
+
 	router.Run()
 }

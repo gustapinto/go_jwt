@@ -9,3 +9,5 @@ services:
       - 8080:8080
     volumes:
       - ./:/go_jwt:Z
+    env_file:
+      - .env

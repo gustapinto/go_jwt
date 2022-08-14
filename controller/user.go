@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"errors"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
@@ -56,7 +57,7 @@ func (c *UserController) Auth(ctx *gin.Context) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, user)
-	ss, err := token.SignedString(hashedPassword)
+	ss, err := token.SignedString([]byte(os.Getenv("JWT_KEY")))
 	if err != nil {
 		ctx.IndentedJSON(http.StatusInternalServerError, err.Error())
 		return
